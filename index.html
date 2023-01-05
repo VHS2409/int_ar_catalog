@@ -1,1 +1,52 @@
+<!-- include A-Frame and AR.js -->
+<script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
 
+<!-- create a scene and specify "reality" mode for tracking -->
+<a-scene vr-mode-ui="enabled: false" arjs="trackingMethod: reality; debugUIEnabled: false">
+  <!-- create a building entity and specify the glTF model file -->
+  <a-entity gltf-model="#building-model" scale="0.01 0.01 0.01" id="building">
+  </a-entity>
+  <!-- create a camera -->
+  <a-entity camera></a-entity>
+</a-scene>
+
+<!-- specify the glTF model file -->
+<a-asset-item id="building-model" src="Dev.glb"></a-asset-item>
+
+<!-- create buttons for movement -->
+<button onclick="moveUp()">Move Up</button>
+<button onclick="moveDown()">Move Down</button>
+<button onclick="moveLeft()">Move Left</button>
+<button onclick="moveRight()">Move Right</button>
+
+<!-- define movement functions -->
+<script>
+  function moveUp() {
+    // get the building entity
+    var building = document.querySelector("#building");
+    // increase the Y position of the building
+    building.setAttribute("position", {y: building.getAttribute("position").y + 0.1});
+  }
+
+  function moveDown() {
+    // get the building entity
+    var building = document.querySelector("#building");
+    // decrease the Y position of the building
+    building.setAttribute("position", {y: building.getAttribute("position").y - 0.1});
+  }
+
+  function moveLeft() {
+    // get the building entity
+    var building = document.querySelector("#building");
+    // decrease the X position of the building
+    building.setAttribute("position", {x: building.getAttribute("position").x - 0.1});
+  }
+
+  function moveRight() {
+    // get the building entity
+    var building = document.querySelector("#building");
+    // increase the X position of the building
+    building.setAttribute("position", {x: building.getAttribute("position").x + 0.1});
+  }
+</script>
